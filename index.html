@@ -570,7 +570,12 @@
                     document.getElementById('successModal').classList.remove('hidden');
                     form.reset();
                 } else {
-                    alert("Ocorreu um erro ao enviar: " + response.statusText);
+                    try {
+                        const errorData = await response.json();
+                        alert(`Erro: ${errorData.error || "Erro desconhecido"} ${errorData.details || ""}`);
+                    } catch (e) {
+                        alert(`Erro: ${response.status} ${response.statusText}`);
+                    }
                 }
             } catch (error) {
                 console.error(error);
