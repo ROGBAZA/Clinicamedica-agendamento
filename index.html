@@ -570,7 +570,7 @@
                     document.getElementById('successModal').classList.remove('hidden');
                     form.reset();
                 } else {
-                    alert("Ocorreu um erro ao enviar.");
+                    alert("Ocorreu um erro ao enviar: " + response.statusText);
                 }
             } catch (error) {
                 console.error(error);
