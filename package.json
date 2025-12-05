@@ -1,0 +1,9 @@
+{
+  "name": "clinicamedica-agendamento",
+  "version": "1.0.0",
+  "description": "Backend for appointment scheduling",
+  "main": "index.html",
+  "dependencies": {
+    "nodemailer": "^6.9.7"
+  }
+}
