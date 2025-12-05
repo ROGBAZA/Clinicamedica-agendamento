@@ -19,6 +19,14 @@ export default async function handler(req, res) {
     return res.status(405).json({ error: 'Method not allowed' });
   }
 
+  // Debugging: Check if env vars are present (do not log values)
+  if (!process.env.EMAIL_USER) {
+    return res.status(500).json({ error: 'Configuration Error', details: 'EMAIL_USER environment variable is missing.' });
+  }
+  if (!process.env.EMAIL_PASS) {
+    return res.status(500).json({ error: 'Configuration Error', details: 'EMAIL_PASS environment variable is missing.' });
+  }
+
   const { name, phone, date, message } = req.body;
 
   if (!name || !phone || !date) {
