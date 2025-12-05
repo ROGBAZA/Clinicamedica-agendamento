@@ -355,13 +355,16 @@
                         <div class="flex gap-4">
                             <div
                                 class="w-8 h-8 bg-white/20 rounded-full hover:bg-primary transition-colors cursor-pointer flex items-center justify-center">
-                                <i data-lucide="instagram" width="16" height="16"></i></div>
+                                <i data-lucide="instagram" width="16" height="16"></i>
+                            </div>
                             <div
                                 class="w-8 h-8 bg-white/20 rounded-full hover:bg-primary transition-colors cursor-pointer flex items-center justify-center">
-                                <i data-lucide="facebook" width="16" height="16"></i></div>
+                                <i data-lucide="facebook" width="16" height="16"></i>
+                            </div>
                             <div
                                 class="w-8 h-8 bg-white/20 rounded-full hover:bg-primary transition-colors cursor-pointer flex items-center justify-center">
-                                <i data-lucide="linkedin" width="16" height="16"></i></div>
+                                <i data-lucide="linkedin" width="16" height="16"></i>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -557,10 +560,10 @@
                         'Content-Type': 'application/json',
                         'Accept': 'application/json'
                     },
-                    body: JSON.stringify({
-                        ...data,
-                        _subject: `Novo Agendamento: ${data.name}`,
-                    })
+                    body: JSON.stringify(data)
+
+
+
                 });
 
                 if (response.ok) {

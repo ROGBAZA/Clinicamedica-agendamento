@@ -36,7 +36,7 @@ export default async function handler(req, res) {
 
     const mailOptions = {
       from: process.env.EMAIL_USER,
-      to: 'bazanrojarayala@gmail.com',
+      to: 'bazanrogerarayala@gmail.com',
       subject: `Novo Agendamento: ${name}`,
       html: `
         <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
