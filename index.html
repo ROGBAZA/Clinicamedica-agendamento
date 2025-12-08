@@ -85,6 +85,47 @@
             backdrop-filter: blur(10px);
             border: 1px solid rgba(0, 0, 0, 0.05);
         }
+
+        /* Calendar Styles */
+        .calendar-day {
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .calendar-day:hover {
+            background-color: rgba(0, 243, 255, 0.1);
+            color: #00f3ff;
+        }
+
+        .calendar-day.selected {
+            background-color: #00f3ff;
+            color: #000;
+            font-weight: bold;
+        }
+
+        .time-slot {
+            cursor: pointer;
+            transition: all 0.2s;
+            border: 1px solid #2a2a35;
+        }
+
+        .time-slot:hover:not(.disabled) {
+            border-color: #00f3ff;
+            color: #00f3ff;
+        }
+
+        .time-slot.selected {
+            background-color: #00f3ff;
+            color: #000;
+            border-color: #00f3ff;
+        }
+
+        .time-slot.disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+            background-color: rgba(255, 0, 0, 0.1);
+            border-color: rgba(255, 0, 0, 0.3);
+        }
     </style>
 </head>
 
@@ -98,6 +139,15 @@
         <i data-lucide="moon" class="block dark:hidden w-6 h-6 group-hover:-rotate-12 transition-transform"></i>
     </button>
 
+    <!-- WhatsApp Button -->
+    <a href="https://wa.me/5567998186597" target="_blank"
+        class="fixed bottom-24 right-6 z-50 p-4 rounded-full bg-[#25D366] text-white shadow-[0_0_20px_rgba(37,211,102,0.5)] hover:scale-110 transition-all duration-300 animate-bounce">
+        <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none"
+            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M3 21l1.65-3.8a9 9 0 1 1 3.4 2.9L3 21"></path>
+        </svg>
+    </a>
+
     <!-- Header -->
     <header
         class="fixed w-full z-40 top-0 bg-white/80 dark:bg-dark-bg/80 backdrop-blur-md border-b border-gray-200 dark:border-dark-border transition-all duration-300">
@@ -107,26 +157,10 @@
                 <span>MEDICARE<span class="text-neon-blue">.AI</span></span>
             </div>
             <nav class="hidden md:flex items-center gap-8 font-medium text-sm tracking-widest uppercase">
-                <a href="#hero" class="hover:text-neon-blue transition-colors relative group">
-                    INÍCIO
-                    <span
-                        class="absolute -bottom-1 left-0 w-0 h-0.5 bg-neon-blue transition-all group-hover:w-full"></span>
-                </a>
-                <a href="#about" class="hover:text-neon-blue transition-colors relative group">
-                    SOBRE
-                    <span
-                        class="absolute -bottom-1 left-0 w-0 h-0.5 bg-neon-blue transition-all group-hover:w-full"></span>
-                </a>
-                <a href="#services" class="hover:text-neon-blue transition-colors relative group">
-                    ESPECIALIDADES
-                    <span
-                        class="absolute -bottom-1 left-0 w-0 h-0.5 bg-neon-blue transition-all group-hover:w-full"></span>
-                </a>
-                <a href="#doctors" class="hover:text-neon-blue transition-colors relative group">
-                    EQUIPE
-                    <span
-                        class="absolute -bottom-1 left-0 w-0 h-0.5 bg-neon-blue transition-all group-hover:w-full"></span>
-                </a>
+                <a href="#hero" class="hover:text-neon-blue transition-colors relative group">INÍCIO</a>
+                <a href="#about" class="hover:text-neon-blue transition-colors relative group">SOBRE</a>
+                <a href="#services" class="hover:text-neon-blue transition-colors relative group">ESPECIALIDADES</a>
+                <a href="#doctors" class="hover:text-neon-blue transition-colors relative group">EQUIPE</a>
                 <a href="#contact"
                     class="px-6 py-2 bg-black dark:bg-neon-blue text-white dark:text-black font-bold rounded-none skew-x-[-10deg] hover:skew-x-0 transition-transform border border-neon-blue hover:shadow-neon-blue">
                     <span class="skew-x-[10deg] inline-block">AGENDAR</span>
@@ -151,7 +185,6 @@
 
     <!-- Hero -->
     <section id="hero" class="pt-32 pb-20 lg:pt-48 lg:pb-32 relative overflow-hidden">
-        <!-- Background Elements -->
         <div class="absolute top-0 left-0 w-full h-full z-0 pointer-events-none">
             <div
                 class="absolute top-20 right-0 w-[500px] h-[500px] bg-neon-blue/10 dark:bg-neon-blue/20 rounded-full blur-[100px] animate-pulse-slow">
@@ -198,8 +231,6 @@
                     <img src="https://images.unsplash.com/photo-1638202993928-7267aad84c31?q=80&w=1000&auto=format&fit=crop"
                         alt="Médica sorrindo com paciente"
                         class="w-full h-auto object-cover transform group-hover:scale-105 transition-transform duration-700 grayscale-[20%] group-hover:grayscale-0">
-
-                    <!-- Floating Tech Card -->
                     <div
                         class="absolute bottom-6 left-6 right-6 z-20 p-4 glass rounded-xl border-l-4 border-neon-green flex items-center gap-4 animate-float">
                         <div
@@ -226,9 +257,7 @@
                 <p class="text-gray-600 dark:text-gray-400 mt-4 max-w-2xl mx-auto">Tecnologia avançada aplicada ao
                     cuidado humano.</p>
             </div>
-
             <div class="grid md:grid-cols-3 gap-8">
-                <!-- Card 1 -->
                 <div
                     class="bg-white dark:bg-dark-card p-8 rounded-xl border border-gray-200 dark:border-dark-border hover:border-neon-blue dark:hover:border-neon-blue transition-all duration-300 group hover:-translate-y-2">
                     <div
@@ -240,7 +269,6 @@
                     <p class="text-gray-600 dark:text-gray-400 leading-relaxed">Diagnóstico integral com suporte de IA
                         para precisão máxima e tratamento preventivo.</p>
                 </div>
-                <!-- Card 2 -->
                 <div
                     class="bg-white dark:bg-dark-card p-8 rounded-xl border border-gray-200 dark:border-dark-border hover:border-neon-pink dark:hover:border-neon-pink transition-all duration-300 group hover:-translate-y-2">
                     <div
@@ -252,7 +280,6 @@
                     <p class="text-gray-600 dark:text-gray-400 leading-relaxed">Monitoramento de desenvolvimento digital
                         e cuidado carinhoso para os pequenos.</p>
                 </div>
-                <!-- Card 3 -->
                 <div
                     class="bg-white dark:bg-dark-card p-8 rounded-xl border border-gray-200 dark:border-dark-border hover:border-neon-green dark:hover:border-neon-green transition-all duration-300 group hover:-translate-y-2">
                     <div
@@ -275,13 +302,12 @@
                 <h2 class="font-display text-3xl md:text-4xl font-bold mb-4">CORPO <span
                         class="text-neon-purple">CLÍNICO</span></h2>
                 <div class="w-24 h-1 bg-gradient-to-r from-neon-purple to-neon-blue mx-auto"></div>
-                <p class="text-gray-600 dark:text-gray-400 mt-4 max-w-2xl mx-auto">Especialistas de elite equipados com
-                    o melhor da medicina moderna.</p>
+                <p class="text-gray-600 dark:text-gray-400 mt-4 max-w-2xl mx-auto">Clique no especialista para ver mais
+                    detalhes.</p>
             </div>
 
             <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-8">
-                <!-- Dr 1 -->
-                <div class="group relative rounded-xl overflow-hidden">
+                <a href="doctor.html?id=roberto" class="group relative rounded-xl overflow-hidden cursor-pointer block">
                     <div
                         class="absolute inset-0 bg-neon-blue/20 opacity-0 group-hover:opacity-100 transition-opacity z-10 mix-blend-overlay">
                     </div>
@@ -292,9 +318,8 @@
                         <h3 class="font-display text-lg font-bold text-white">DR. ROBERTO SILVA</h3>
                         <p class="text-neon-blue text-sm font-medium tracking-wider">CARDIOLOGISTA</p>
                     </div>
-                </div>
-                <!-- Dr 2 -->
-                <div class="group relative rounded-xl overflow-hidden">
+                </a>
+                <a href="doctor.html?id=amanda" class="group relative rounded-xl overflow-hidden cursor-pointer block">
                     <div
                         class="absolute inset-0 bg-neon-pink/20 opacity-0 group-hover:opacity-100 transition-opacity z-10 mix-blend-overlay">
                     </div>
@@ -305,9 +330,8 @@
                         <h3 class="font-display text-lg font-bold text-white">DRA. AMANDA COSTA</h3>
                         <p class="text-neon-pink text-sm font-medium tracking-wider">PEDIATRA</p>
                     </div>
-                </div>
-                <!-- Dr 3 -->
-                <div class="group relative rounded-xl overflow-hidden">
+                </a>
+                <a href="doctor.html?id=carlos" class="group relative rounded-xl overflow-hidden cursor-pointer block">
                     <div
                         class="absolute inset-0 bg-neon-green/20 opacity-0 group-hover:opacity-100 transition-opacity z-10 mix-blend-overlay">
                     </div>
@@ -318,9 +342,8 @@
                         <h3 class="font-display text-lg font-bold text-white">DR. CARLOS MENDES</h3>
                         <p class="text-neon-green text-sm font-medium tracking-wider">NEUROLOGISTA</p>
                     </div>
-                </div>
-                <!-- Dr 4 -->
-                <div class="group relative rounded-xl overflow-hidden">
+                </a>
+                <a href="doctor.html?id=juliana" class="group relative rounded-xl overflow-hidden cursor-pointer block">
                     <div
                         class="absolute inset-0 bg-neon-purple/20 opacity-0 group-hover:opacity-100 transition-opacity z-10 mix-blend-overlay">
                     </div>
@@ -331,14 +354,13 @@
                         <h3 class="font-display text-lg font-bold text-white">DRA. JULIANA ALVES</h3>
                         <p class="text-neon-purple text-sm font-medium tracking-wider">DERMATOLOGISTA</p>
                     </div>
-                </div>
+                </a>
             </div>
         </div>
     </section>
 
     <!-- Contact -->
     <section id="contact" class="py-20 bg-gray-100 dark:bg-black relative overflow-hidden">
-        <!-- Grid Background -->
         <div
             class="absolute inset-0 bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] bg-[size:24px_24px]">
         </div>
@@ -355,17 +377,14 @@
                     <div
                         class="absolute bottom-0 left-0 w-64 h-64 bg-neon-purple/10 rounded-full blur-3xl -ml-20 -mb-20">
                     </div>
-
                     <div class="relative z-10">
                         <h3 class="font-display text-2xl font-bold mb-2">INICIAR PROTOCOLO</h3>
                         <p class="text-gray-400 mb-8 text-sm">Preencha os dados para agendamento prioritário.</p>
-
                         <div class="space-y-8">
                             <div class="flex items-start gap-4 group">
                                 <div
                                     class="w-10 h-10 rounded-lg bg-gray-900 border border-gray-800 flex items-center justify-center shrink-0 group-hover:border-neon-blue group-hover:text-neon-blue transition-colors">
-                                    <i data-lucide="phone" width="20"></i>
-                                </div>
+                                    <i data-lucide="phone" width="20"></i></div>
                                 <div>
                                     <p class="text-xs text-gray-500 uppercase tracking-wider">COMUNICAÇÃO DE VOZ</p>
                                     <p
@@ -376,8 +395,7 @@
                             <div class="flex items-start gap-4 group">
                                 <div
                                     class="w-10 h-10 rounded-lg bg-gray-900 border border-gray-800 flex items-center justify-center shrink-0 group-hover:border-neon-pink group-hover:text-neon-pink transition-colors">
-                                    <i data-lucide="map-pin" width="20"></i>
-                                </div>
+                                    <i data-lucide="map-pin" width="20"></i></div>
                                 <div>
                                     <p class="text-xs text-gray-500 uppercase tracking-wider">LOCALIZAÇÃO FÍSICA</p>
                                     <p class="font-semibold text-gray-300">Av. Afonso Pena, 1234<br>Centro, Campo Grande
@@ -387,23 +405,13 @@
                             <div class="flex items-start gap-4 group">
                                 <div
                                     class="w-10 h-10 rounded-lg bg-gray-900 border border-gray-800 flex items-center justify-center shrink-0 group-hover:border-neon-green group-hover:text-neon-green transition-colors">
-                                    <i data-lucide="clock" width="20"></i>
-                                </div>
+                                    <i data-lucide="clock" width="20"></i></div>
                                 <div>
                                     <p class="text-xs text-gray-500 uppercase tracking-wider">JANELA DE OPERAÇÃO</p>
                                     <p class="font-semibold text-gray-300">Seg - Sex: 08h às 18h<br>Sáb: 08h às 12h</p>
                                 </div>
                             </div>
                         </div>
-                    </div>
-
-                    <div class="mt-12 flex gap-4">
-                        <a href="#"
-                            class="w-10 h-10 bg-gray-900 rounded-lg flex items-center justify-center hover:bg-neon-blue hover:text-black transition-all"><i
-                                data-lucide="instagram" width="18"></i></a>
-                        <a href="#"
-                            class="w-10 h-10 bg-gray-900 rounded-lg flex items-center justify-center hover:bg-neon-blue hover:text-black transition-all"><i
-                                data-lucide="facebook" width="18"></i></a>
                     </div>
                 </div>
 
@@ -418,21 +426,28 @@
                                 <input type="text" name="name" required
                                     class="w-full bg-gray-50 dark:bg-black border-b-2 border-gray-200 dark:border-gray-800 px-4 py-3 focus:border-neon-blue outline-none transition-all text-gray-900 dark:text-white placeholder-gray-400">
                             </div>
-                            <div class="grid grid-cols-2 gap-6">
-                                <div class="group">
-                                    <label
-                                        class="block text-xs font-bold text-gray-500 dark:text-gray-400 uppercase tracking-wider mb-2 group-focus-within:text-neon-blue transition-colors">Contato</label>
-                                    <input type="tel" name="phone" required
-                                        class="w-full bg-gray-50 dark:bg-black border-b-2 border-gray-200 dark:border-gray-800 px-4 py-3 focus:border-neon-blue outline-none transition-all text-gray-900 dark:text-white placeholder-gray-400">
-                                </div>
-                                <div class="group">
-                                    <label
-                                        class="block text-xs font-bold text-gray-500 dark:text-gray-400 uppercase tracking-wider mb-2 group-focus-within:text-neon-blue transition-colors">Data
-                                        Alvo</label>
-                                    <input type="date" name="date"
-                                        class="w-full bg-gray-50 dark:bg-black border-b-2 border-gray-200 dark:border-gray-800 px-4 py-3 focus:border-neon-blue outline-none transition-all text-gray-900 dark:text-white placeholder-gray-400">
-                                </div>
+                            <div class="group">
+                                <label
+                                    class="block text-xs font-bold text-gray-500 dark:text-gray-400 uppercase tracking-wider mb-2 group-focus-within:text-neon-blue transition-colors">Contato</label>
+                                <input type="tel" name="phone" required
+                                    class="w-full bg-gray-50 dark:bg-black border-b-2 border-gray-200 dark:border-gray-800 px-4 py-3 focus:border-neon-blue outline-none transition-all text-gray-900 dark:text-white placeholder-gray-400">
                             </div>
+
+                            <!-- Calendar UI -->
+                            <div class="group">
+                                <label
+                                    class="block text-xs font-bold text-gray-500 dark:text-gray-400 uppercase tracking-wider mb-2">Data
+                                    e Hora</label>
+                                <input type="date" id="dateInput" name="date"
+                                    class="w-full bg-gray-50 dark:bg-black border-b-2 border-gray-200 dark:border-gray-800 px-4 py-3 focus:border-neon-blue outline-none transition-all text-gray-900 dark:text-white mb-4">
+
+                                <div id="timeSlots" class="grid grid-cols-4 gap-2 hidden">
+                                    <!-- Slots generated by JS -->
+                                </div>
+                                <input type="hidden" name="time" id="selectedTime">
+                                <p id="slotMsg" class="text-xs mt-2 text-neon-pink hidden"></p>
+                            </div>
+
                             <div class="group">
                                 <label
                                     class="block text-xs font-bold text-gray-500 dark:text-gray-400 uppercase tracking-wider mb-2 group-focus-within:text-neon-blue transition-colors">Dados
@@ -473,8 +488,7 @@
             <div class="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-neon-blue to-neon-purple"></div>
             <div
                 class="w-16 h-16 bg-neon-blue/20 rounded-full flex items-center justify-center mx-auto mb-6 text-neon-blue animate-pulse">
-                <i data-lucide="check" class="w-8 h-8"></i>
-            </div>
+                <i data-lucide="check" class="w-8 h-8"></i></div>
             <h3 class="text-2xl font-display font-bold text-white mb-2">AGENDAMENTO CONFIRMADO</h3>
             <p class="text-gray-400 mb-6">Seus dados foram processados pelo sistema. Nossa equipe entrará em contato em
                 breve.</p>
@@ -484,40 +498,66 @@
     </div>
 
     <script>
-        // Icons
         lucide.createIcons();
 
-        // Dark Mode Logic
+        // Dark Mode
         const themeToggle = document.getElementById('theme-toggle');
         const html = document.documentElement;
-
-        // Check local storage or system preference
-        if (localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
-            html.classList.add('dark');
-        } else {
-            html.classList.remove('dark');
-        }
-
-        themeToggle.addEventListener('click', () => {
-            html.classList.toggle('dark');
-            if (html.classList.contains('dark')) {
-                localStorage.theme = 'dark';
-            } else {
-                localStorage.theme = 'light';
-            }
-        });
+        if (localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) { html.classList.add('dark'); } else { html.classList.remove('dark'); }
+        themeToggle.addEventListener('click', () => { html.classList.toggle('dark'); localStorage.theme = html.classList.contains('dark') ? 'dark' : 'light'; });
 
         // Mobile Menu
-        const menuBtn = document.getElementById('mobile-menu-btn');
-        const mobileMenu = document.getElementById('mobile-menu');
-        menuBtn.addEventListener('click', () => {
-            mobileMenu.classList.toggle('hidden');
+        document.getElementById('mobile-menu-btn').addEventListener('click', () => { document.getElementById('mobile-menu').classList.toggle('hidden'); });
+
+        // Calendar Logic
+        const dateInput = document.getElementById('dateInput');
+        const timeSlotsContainer = document.getElementById('timeSlots');
+        const selectedTimeInput = document.getElementById('selectedTime');
+        const slotMsg = document.getElementById('slotMsg');
+
+        // Mock Availability Data (Date -> { Time: Count })
+        const availability = {
+            '2023-10-27': { '10:00': 3, '14:00': 1 }, // Example: 10:00 is full
+        };
+
+        dateInput.addEventListener('change', (e) => {
+            const date = e.target.value;
+            if (!date) { timeSlotsContainer.classList.add('hidden'); return; }
+
+            timeSlotsContainer.innerHTML = '';
+            timeSlotsContainer.classList.remove('hidden');
+            slotMsg.classList.add('hidden');
+            selectedTimeInput.value = '';
+
+            const times = ['08:00', '09:00', '10:00', '11:00', '14:00', '15:00', '16:00', '17:00'];
+
+            times.forEach(time => {
+                const count = (availability[date] && availability[date][time]) || 0;
+                const isFull = count >= 3;
+
+                const div = document.createElement('div');
+                div.className = `time-slot p-2 text-center text-sm rounded ${isFull ? 'disabled' : 'bg-gray-100 dark:bg-gray-900 text-gray-700 dark:text-gray-300'}`;
+                div.textContent = time;
+
+                if (isFull) {
+                    div.title = "Horário Lotado";
+                } else {
+                    div.onclick = () => {
+                        document.querySelectorAll('.time-slot').forEach(el => el.classList.remove('selected'));
+                        div.classList.add('selected');
+                        selectedTimeInput.value = time;
+                    };
+                }
+                timeSlotsContainer.appendChild(div);
+            });
         });
 
-        // Form Logic
+        // Form Submit
         const form = document.getElementById('contactForm');
         form.addEventListener('submit', async function (e) {
             e.preventDefault();
+            if (!selectedTimeInput.value) { alert('Por favor, selecione um horário.'); return; }
+
             const btn = form.querySelector('button[type="submit"]');
             const originalContent = btn.innerHTML;
             btn.disabled = true;
@@ -525,6 +565,8 @@
 
             const formData = new FormData(form);
             const data = Object.fromEntries(formData.entries());
+            // Append time to date for the backend
+            data.date = `${data.date} às ${data.time}`;
 
             try {
                 const response = await fetch("/api/send-appointment", {
@@ -532,22 +574,10 @@
                     headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
                     body: JSON.stringify(data)
                 });
-
-                if (response.ok) {
-                    document.getElementById('successModal').classList.remove('hidden');
-                    form.reset();
-                } else {
-                    const errorData = await response.json();
-                    alert(`Erro: ${errorData.error || "Erro desconhecido"}`);
-                }
-            } catch (error) {
-                console.error(error);
-                alert("Erro de conexão.");
-            } finally {
-                btn.disabled = false;
-                btn.innerHTML = originalContent;
-                lucide.createIcons();
-            }
+                if (response.ok) { document.getElementById('successModal').classList.remove('hidden'); form.reset(); timeSlotsContainer.classList.add('hidden'); }
+                else { const errorData = await response.json(); alert(`Erro: ${errorData.error || "Erro desconhecido"}`); }
+            } catch (error) { console.error(error); alert("Erro de conexão."); }
+            finally { btn.disabled = false; btn.innerHTML = originalContent; lucide.createIcons(); }
         });
     </script>
     <script async src="https://app.gptmaker.ai/widget/3EB69C902926739260A05E69D503AE1E/float.js"></script>
