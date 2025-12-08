@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="pt-BR" class="scroll-smooth">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Especialista | MediCare.AI</title>
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;700;900&family=Rajdhani:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+    <!-- Tailwind -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Rajdhani', 'sans-serif'],
+                        display: ['Orbitron', 'sans-serif'],
+                    },
+                    colors: {
+                        neon: {
+                            blue: '#00f3ff',
+                            pink: '#ff00ff',
+                            green: '#39ff14',
+                            purple: '#bc13fe',
+                        },
+                        dark: {
+                            bg: '#050505',
+                            card: '#101015',
+                            border: '#2a2a35',
+                        }
+                    },
+                    boxShadow: {
+                        'neon-blue': '0 0 10px rgba(0, 243, 255, 0.5), 0 0 20px rgba(0, 243, 255, 0.3)',
+                    }
+                }
+            }
+        }
+    </script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <style>
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: #050505;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: #2a2a35;
+            border-radius: 4px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: #00f3ff;
+        }
+    </style>
+</head>
+
+<body
+    class="bg-gray-50 text-gray-900 dark:bg-dark-bg dark:text-gray-100 transition-colors duration-300 font-sans antialiased">
+
+    <!-- Theme Toggle -->
+    <button id="theme-toggle"
+        class="fixed top-6 right-6 z-50 p-3 rounded-full bg-white dark:bg-dark-card shadow-lg border border-gray-200 dark:border-neon-blue/30 text-gray-800 dark:text-neon-blue hover:scale-110 transition-all duration-300 group">
+        <i data-lucide="sun" class="hidden dark:block w-6 h-6 group-hover:rotate-90 transition-transform"></i>
+        <i data-lucide="moon" class="block dark:hidden w-6 h-6 group-hover:-rotate-12 transition-transform"></i>
+    </button>
+
+    <!-- Header -->
+    <header
+        class="fixed w-full z-40 top-0 bg-white/80 dark:bg-dark-bg/80 backdrop-blur-md border-b border-gray-200 dark:border-dark-border transition-all duration-300">
+        <div class="container mx-auto px-6 py-4 flex justify-between items-center">
+            <a href="index.html" class="flex items-center gap-2 font-display font-bold text-2xl tracking-wider">
+                <div class="text-neon-blue"><i data-lucide="arrow-left"></i></div>
+                <span>VOLTAR</span>
+            </a>
+        </div>
+    </header>
+
+    <!-- Doctor Details -->
+    <section class="pt-32 pb-20 min-h-screen flex items-center">
+        <div class="container mx-auto px-6">
+            <div
+                class="max-w-6xl mx-auto bg-white dark:bg-dark-card rounded-2xl shadow-2xl border border-gray-200 dark:border-dark-border overflow-hidden flex flex-col md:flex-row">
+
+                <!-- Image -->
+                <div class="md:w-1/2 relative">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent z-10"></div>
+                    <img id="doc-img" src="" alt="Doctor" class="w-full h-full object-cover min-h-[400px]">
+                    <div class="absolute bottom-0 left-0 w-full p-8 z-20">
+                        <h1 id="doc-name" class="font-display text-4xl font-bold text-white mb-2"></h1>
+                        <p id="doc-spec" class="text-neon-blue text-xl font-medium tracking-wider uppercase"></p>
+                    </div>
+                </div>
+
+                <!-- Info -->
+                <div class="md:w-1/2 p-12 flex flex-col justify-center">
+                    <h2 class="font-display text-2xl font-bold mb-6 text-gray-900 dark:text-white">SOBRE O ESPECIALISTA
+                    </h2>
+                    <p id="doc-bio" class="text-gray-600 dark:text-gray-400 mb-8 leading-relaxed text-lg"></p>
+
+                    <div class="mb-8">
+                        <h3 class="font-display text-lg font-bold mb-4 text-gray-900 dark:text-white">QUALIFICAÇÕES</h3>
+                        <ul id="doc-qualities" class="space-y-3 text-gray-600 dark:text-gray-400">
+                            <!-- Populated by JS -->
+                        </ul>
+                    </div>
+
+                    <a href="index.html#contact"
+                        class="inline-flex items-center justify-center gap-2 w-full py-4 bg-neon-blue text-black font-bold font-display tracking-wider rounded-sm hover:bg-white transition-all shadow-lg hover:shadow-neon-blue/50">
+                        AGENDAR COM ESTE ESPECIALISTA <i data-lucide="calendar-check" class="w-5 h-5"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        lucide.createIcons();
+
+        // Dark Mode Logic
+        const themeToggle = document.getElementById('theme-toggle');
+        const html = document.documentElement;
+        if (localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+            html.classList.add('dark');
+        } else {
+            html.classList.remove('dark');
+        }
+        themeToggle.addEventListener('click', () => {
+            html.classList.toggle('dark');
+            if (html.classList.contains('dark')) { localStorage.theme = 'dark'; } else { localStorage.theme = 'light'; }
+        });
+
+        // Doctor Data
+        const doctors = {
+            'roberto': {
+                name: 'DR. ROBERTO SILVA',
+                spec: 'CARDIOLOGISTA',
+                img: 'https://images.unsplash.com/photo-1612349317150-e413f6a5b16d?q=80&w=1000&auto=format&fit=crop',
+                bio: 'Com mais de 15 anos de experiência, Dr. Roberto é pioneiro em cirurgias cardíacas minimamente invasivas. Sua abordagem combina precisão técnica com um cuidado profundo pelo bem-estar emocional de seus pacientes.',
+                qualities: ['Doutorado em Cardiologia pela USP', 'Especialização em Harvard Medical School', 'Membro da Sociedade Brasileira de Cardiologia']
+            },
+            'amanda': {
+                name: 'DRA. AMANDA COSTA',
+                spec: 'PEDIATRA',
+                img: 'https://images.unsplash.com/photo-1559839734-2b71ea197ec2?q=80&w=1000&auto=format&fit=crop',
+                bio: 'Dra. Amanda dedica sua vida a garantir que cada criança atinja seu potencial máximo de saúde. Conhecida por sua paciência e habilidade em tornar consultas divertidas para os pequenos.',
+                qualities: ['Residência em Pediatria no Hospital Pequeno Príncipe', 'Especialista em Neonatologia', 'Consultora de Amamentação Certificada']
+            },
+            'carlos': {
+                name: 'DR. CARLOS MENDES',
+                spec: 'NEUROLOGISTA',
+                img: 'https://images.unsplash.com/photo-1537368910025-700350fe46c7?q=80&w=1000&auto=format&fit=crop',
+                bio: 'Especialista em distúrbios do sono e enxaquecas, Dr. Carlos utiliza as mais recentes tecnologias de mapeamento cerebral para diagnósticos precisos e tratamentos eficazes.',
+                qualities: ['Mestrado em Neurociências', 'Fellowship em Neurologia Clínica', 'Pesquisador Ativo em Neuroplasticidade']
+            },
+            'juliana': {
+                name: 'DRA. JULIANA ALVES',
+                spec: 'DERMATOLOGISTA',
+                img: 'https://images.unsplash.com/photo-1594824476967-48c8b964273f?q=80&w=1000&auto=format&fit=crop',
+                bio: 'Dra. Juliana une ciência e estética para promover a saúde da pele. Focada em tratamentos regenerativos e prevenção do câncer de pele com tecnologia de ponta.',
+                qualities: ['Membro da Sociedade Brasileira de Dermatologia', 'Especialização em Dermatoscopia Digital', 'Pós-graduação em Cosmiatria']
+            }
+        };
+
+        // Populate Data
+        const params = new URLSearchParams(window.location.search);
+        const id = params.get('id');
+        const doc = doctors[id];
+
+        if (doc) {
+            document.getElementById('doc-name').textContent = doc.name;
+            document.getElementById('doc-spec').textContent = doc.spec;
+            document.getElementById('doc-img').src = doc.img;
+            document.getElementById('doc-bio').textContent = doc.bio;
+
+            const qualitiesList = document.getElementById('doc-qualities');
+            doc.qualities.forEach(q => {
+                const li = document.createElement('li');
+                li.className = 'flex items-center gap-2';
+                li.innerHTML = `<i data-lucide="check-circle" class="text-neon-blue w-5 h-5"></i> <span>${q}</span>`;
+                qualitiesList.appendChild(li);
+            });
+            lucide.createIcons();
+        } else {
+            document.body.innerHTML = '<div class="h-screen flex items-center justify-center text-white">Médico não encontrado.</div>';
+        }
+    </script>
+</body>
+
+</html>
